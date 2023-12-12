@@ -11,19 +11,19 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-
 app.UseCors(builder =>
         builder
         .AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader());
 
+// app.UseHttpsRedirection();
+
 // Configure the HTTP request pipeline.
 
-app.UseRouting();
+// app.UseRouting();
 
-app.UseAuthorization();
+// app.UseAuthorization();
 
 app.MapControllers();
 

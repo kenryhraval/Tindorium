@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Cache;
 using Tindorium.Data;
 
 namespace Tindorium.API.Controllers
@@ -7,6 +8,12 @@ namespace Tindorium.API.Controllers
     [Route("[controller]")]//localhost:7157/User 
     public class UserController : ControllerBase //[controller] == User
     {
+        private UserRepository _userRepository;
+        public UserController(UserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+        
         //Get, POST, 
         [HttpGet]
         [Route("Ping")]
@@ -31,9 +38,17 @@ namespace Tindorium.API.Controllers
 
         [HttpPost]
         [Route("AddUser")]
-        public string AddUser([FromBody] UserDTO user)//localhost:7157/AddUser    body-> {"name": "vārds"}
+        public User AddUser([FromBody] UserDTO user)//localhost:7157/AddUser    body-> {"name": "vārds"}
         {
-            return "user name " + user.Name;
+            var userEntity = new User()
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Age = user.Age
+            };
+
+            _userRepository.Add(userEntity);
+            return userEntity;
         }
 
         [HttpPost]
@@ -48,4 +63,6 @@ namespace Tindorium.API.Controllers
 public class UserDTO
 {
     public string Name { get; set; }
+    public string Surname { get; set; }
+    public int Age { get; set; } ///small int
 }

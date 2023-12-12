@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tindorium.API", "Tindorium.API.csproj", "{2F74499F-1DB2-402D-98DC-5CA94B7C0A0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tindorium.API", "Tindorium.API.csproj", "{2F74499F-1DB2-402D-98DC-5CA94B7C0A0A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CC5FA5A7-374D-4D48-B069-FC26375F6667} = {CC5FA5A7-374D-4D48-B069-FC26375F6667}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tindorium.Data", "..\Tindorium.Data\Tindorium.Data.csproj", "{CC5FA5A7-374D-4D48-B069-FC26375F6667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tindorium.Data", "..\Tindorium.Data\Tindorium.Data.csproj", "{CC5FA5A7-374D-4D48-B069-FC26375F6667}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

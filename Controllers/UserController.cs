@@ -20,6 +20,7 @@ namespace Tindorium.API.Controllers
         public string Ping() //localhost:7157/User/Ping
         {
             return "PONG";
+            
         }
 
         [HttpGet]
@@ -30,10 +31,12 @@ namespace Tindorium.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetUser")]//localhost:7157/User/GetUser?id=12
-        public string GetUser(int id)
+        [Route("GetUser/{id}")]
+        public User GetUser(int id)
         {
-            return "pārstrādāts " + id;
+            var user = _userRepository.GetById(id);
+
+            return user;
         }
 
         [HttpPost]
@@ -56,6 +59,29 @@ namespace Tindorium.API.Controllers
         public string Test()
         {
             return "test data";
+        }
+
+        [HttpGet]
+        [Route("GetPotentionalMatch")]
+        public User GetPotentionalMatch()
+        {
+            return _userRepository.GetPotentionalMatch();
+        }
+
+
+        [HttpDelete]
+        [Route("DeleteUser/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            var user = _userRepository.GetById(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _userRepository.Delete(user);
+            return NoContent();
         }
     }
 }

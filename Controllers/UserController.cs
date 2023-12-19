@@ -9,9 +9,11 @@ namespace Tindorium.API.Controllers
     public class UserController : ControllerBase //[controller] == User
     {
         private UserRepository _userRepository;
-        public UserController(UserRepository userRepository)
+        private LikeRepository _likeRepository;
+        public UserController(UserRepository userRepository, LikeRepository likeRepository)
         {
             _userRepository = userRepository;
+            _likeRepository = likeRepository;
         }
         
         //Get, POST, 
@@ -82,6 +84,14 @@ namespace Tindorium.API.Controllers
 
             _userRepository.Delete(user);
             return NoContent();
+        }
+
+        [HttpPost]
+        [Route("Likes")]
+        public IActionResult AddLike([FromBody] Like like)
+        {
+            _likeRepository.AddLike(like);
+            return Ok();
         }
     }
 }
